@@ -34,4 +34,29 @@ public class ProductOfArrayExceptItSelf {
         return answer;
     }
 
+    public int[] productExceptSelf(int[] nums) {
+        if (nums == null || nums.length == 0) return null;
+        int[] res = new int[nums.length];
+        int multi = 1;
+        int zero = 0;
+        for (int num : nums) {
+            if (num != 0) {
+                multi *= num;
+            } else {
+                zero += 1;
+            }
+        }
+        if (zero > 1) return res;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                res[i] = multi;
+            }  else if (zero == 1) {
+                res[i] = 0;
+            } else {
+                res[i] = multi / nums[i];
+            }
+        }
+        return res;
+    }
+
 }
